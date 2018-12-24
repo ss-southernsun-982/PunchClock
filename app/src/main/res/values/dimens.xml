@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_16dp">16dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <!--user-->
+    <dimen name="dimen_avatar">120dp</dimen>
+    <dimen name="radius_card_login">8dp</dimen>
+    <dimen name="textSmall">14sp</dimen>
+    <dimen name="textMedium">18sp</dimen>
+    <dimen name="textLarge">22sp</dimen>
+    <dimen name="textLarger">26sp</dimen>
+    <dimen name="padding_32dp">32dp</dimen>
+    <dimen name="dimen_50dp">50dp</dimen>
+    <dimen name="dimen_40dp">40dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+</resources>
