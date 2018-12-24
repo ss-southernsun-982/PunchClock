@@ -9,7 +9,8 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="@dimen/dimen_50dp"
-        android:layout_height="@dimen/dimen_50dp"
+        android:id="@+id/img_item_menu_main"
+        android:layout_width="@dimen/dimen_40dp"
+        android:layout_height="@dimen/dimen_40dp"
         android:src="@drawable/ic_report" />
 </RelativeLayout>

@@ -1,13 +1,26 @@
 package com.example.namtn.punchclock.Activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
+import com.example.namtn.punchclock.Adapter.MenuMainAdapter;
+import com.example.namtn.punchclock.Model.MainModel.MainModelImpl;
+import com.example.namtn.punchclock.Presenter.MainPresenter.MainPresenter;
+import com.example.namtn.punchclock.Presenter.MainPresenter.MainPresenterImpl;
 import com.example.namtn.punchclock.R;
+import com.example.namtn.punchclock.View.MainView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MainView, AdapterView
+        .OnItemClickListener {
 
     private GridView mGridViewMain;
+    private MainPresenter mMainPresenter;
+    private TextView mTextViewHour, mTextViewMinute, mTextViewSecond, mTextViewDate,
+            mTextViewMonth, mTextViewYear;
+    private Runnable r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,21 +35,27 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView() {
         mGridViewMain = findViewById(R.id.grid_menu_main);
+        mTextViewHour = findViewById(R.id.txt_hour_main);
+        mTextViewMinute = findViewById(R.id.txt_minute_main);
+        mTextViewSecond = findViewById(R.id.txt_second_main);
+        mTextViewDate = findViewById(R.id.txt_date_main);
     }
 
     @Override
     protected void initEventControl() {
-
+        mGridViewMain.setOnItemClickListener(this);
     }
 
     @Override
     protected void initData() {
-
+        mMainPresenter = new MainPresenterImpl(this, new MainModelImpl(this));
+        mMainPresenter.menuConfig();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        mMainPresenter.getDateTime();
     }
 
     @Override
@@ -47,5 +66,27 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
+    }
+
+    @Override
+    public void initMenu(MenuMainAdapter adapter) {
+        mGridViewMain.setAdapter(adapter);
+    }
+
+    @Override
+    public void dateTimeData(int date, int month, int year, int hour, int minute, int second) {
+        mTextViewHour.setText(String.valueOf(hour));
+        mTextViewMinute.setText(String.valueOf(minute));
+        mTextViewSecond.setText(String.valueOf(second));
+        mTextViewDate.setText(date + "/" + month + "/" + year);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                mMainPresenter.IntentClass(AttendanceActivity.class);
+                break;
+        }
     }
 }

@@ -32,7 +32,177 @@
                 android:id="@+id/layout_calender_main"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"></RelativeLayout>
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <RelativeLayout
+                    android:id="@+id/layout_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_16dp"
+                    android:weightSum="5">
+
+                    <RelativeLayout
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/txt_hour_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/digital"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="00"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="110dp" />
+
+                        <TextView
+                            android:id="@+id/dot_1_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@+id/txt_hour_main"
+                            android:fontFamily="@font/digital"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text=":"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="120dp" />
+
+                        <TextView
+                            android:id="@+id/txt_minute_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@+id/dot_1_main"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/digital"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="00"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="110dp" />
+
+                        <TextView
+                            android:id="@+id/dot_2_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@+id/txt_minute_main"
+                            android:fontFamily="@font/digital"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text=":"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="120dp" />
+
+                        <TextView
+                            android:id="@+id/txt_second_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@+id/dot_2_main"
+                            android:fontFamily="@font/digital"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="00"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="110dp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/layout_time"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txt_date_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/digital"
+                        android:padding="@dimen/margin_8dp"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/dimen_40dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_medium"
+                        android:padding="@dimen/padding_16dp"
+                        android:text="Đến sớm 5 phút được coi là đúng giờ"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textMedium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <TextView
+                            android:id="@+id/current_location_main"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/ic_location_on_white_24dp"
+                            android:drawablePadding="@dimen/margin_8dp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center"
+                            android:padding="@dimen/padding_16dp"
+                            android:text="222 Lê Văn Sĩ"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="@dimen/textMedium" />
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true">
+
+                                <ImageView
+                                    android:id="@+id/img_weather_main"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:src="@drawable/ic_snow" />
+
+                                <TextView
+                                    android:id="@+id/txt_current_weather_main"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerInParent="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_toRightOf="@+id/img_weather_main"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:gravity="center"
+                                    android:padding="@dimen/padding_16dp"
+                                    android:text="Snow"
+                                    android:textColor="@color/colorWhite"
+                                    android:textSize="@dimen/textMedium" />
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/layout_menu_bottom_main"
@@ -43,7 +213,8 @@
                 <GridView
                     android:id="@+id/grid_menu_main"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_centerInParent="true"
                     android:background="@color/colorWhite"
                     android:gravity="center"
