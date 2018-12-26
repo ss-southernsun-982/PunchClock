@@ -14,4 +14,6 @@ public interface MainModel {
     void getDateTime(onMainListener listener);
 
     void IntentClass(Class c);
+
+    void destroyHandle();
 }

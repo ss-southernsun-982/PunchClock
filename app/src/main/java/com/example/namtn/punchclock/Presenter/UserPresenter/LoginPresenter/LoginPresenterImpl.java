@@ -63,6 +63,13 @@ public class LoginPresenterImpl implements LoginPresenter, LoginModel.onLoginLis
     }
 
     @Override
+    public void getUserInfo() {
+        if (mLoginMode != null){
+            mLoginMode.getUserInfo();
+        }
+    }
+
+    @Override
     public void IntentClass(Class c) {
         if (mLoginMode != null) {
             mLoginMode.IntentClass(c);

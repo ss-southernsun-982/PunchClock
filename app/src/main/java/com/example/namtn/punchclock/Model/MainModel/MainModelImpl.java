@@ -8,8 +8,11 @@ import android.os.Handler;
 import com.example.namtn.punchclock.Adapter.MenuMainAdapter;
 import com.example.namtn.punchclock.R;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MainModelImpl implements MainModel {
 
@@ -21,11 +24,13 @@ public class MainModelImpl implements MainModel {
     private int date, month, year, hour, minute, second;
     Runnable runnable;
     Handler handler;
+    private DateFormat dateFormat;
 
     public MainModelImpl(Context context) {
         this.context = context;
         this.activity = (Activity) context;
         listMenu = new ArrayList<>();
+        dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     }
 
     @Override
@@ -44,11 +49,13 @@ public class MainModelImpl implements MainModel {
         runnable = new Runnable() {
             @Override
             public void run() {
+                Date currentDate = new Date();
                 Calendar c = Calendar.getInstance();
+                c.setTime(currentDate);
                 date = c.get(Calendar.DATE);
                 month = c.get(Calendar.MONTH);
                 year = c.get(Calendar.YEAR);
-                hour = c.get(Calendar.HOUR);
+                hour = c.get(Calendar.HOUR_OF_DAY);
                 minute = c.get(Calendar.MINUTE);
                 second = c.get(Calendar.SECOND);
                 listener.dateTimeData(date, month + 1, year, hour, minute, second);
@@ -56,13 +63,20 @@ public class MainModelImpl implements MainModel {
             }
         };
         handler = new Handler();
-        handler.postDelayed(runnable, 1000);
+        handler.postDelayed(runnable, 0);
     }
 
     @Override
     public void IntentClass(Class c) {
         Intent intent = new Intent(context, c);
         activity.startActivity(intent);
-        handler.removeCallbacks(runnable);
+        this.destroyHandle();
+    }
+
+    @Override
+    public void destroyHandle() {
+        if (handler != null && runnable != null){
+            handler.removeCallbacks(runnable);
+        }
     }
 }

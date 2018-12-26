@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.StrictMode;
 import android.util.Log;
 
 import com.example.namtn.punchclock.Retrofit.RetrofitConfig.RetrofitAPIs;
@@ -18,14 +19,22 @@ public class LoginModelImpl implements LoginModel {
     private Context context;
     private Activity activity;
     private RetrofitAPIs retrofit;
+    private RetrofitAPIs retrofitInfo;
     private CompositeDisposable compositeDisposable;
     private String TAG = "LOGIN_USER";
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
+    String token = "";
+    String email = "";
 
     public LoginModelImpl(Context context) {
         this.context = context;
         this.activity = (Activity) context;
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll()
+                    .build();
+            StrictMode.setThreadPolicy(policy);
+        }
         preferences = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
         editor = preferences.edit();
         retrofit = RetrofitUtils.apiUserLogin();
@@ -38,7 +47,7 @@ public class LoginModelImpl implements LoginModel {
         int errorCode = 0;
         String grant_type = "password";
         String client_id = "2";
-        String client_secret = "rOU4FPWpj36XDlWvNZBn1S39BZaxFpGyAEtBHBLH";
+        String client_secret = "s4ao1Y6WD7kxNUnkn0QeiJmJej7JckWVtPsC7Cqp";
         Log.d(TAG, "loginUser: " + email);
         if (email.isEmpty()) {
             listener.hideProgressDialog();
@@ -51,7 +60,7 @@ public class LoginModelImpl implements LoginModel {
             errorCode++;
         }
         if (errorCode == 0) {
-            compositeDisposable.add(retrofit.uerLogin(email, password, grant_type, client_id,
+            compositeDisposable.add(retrofit.userLogin(email, password, grant_type, client_id,
                     client_secret)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -59,10 +68,10 @@ public class LoginModelImpl implements LoginModel {
                             s -> {
                                 listener.setLoginSuccess("Đăng nhập thành công");
                                 listener.hideProgressDialog();
-                                editor.putString("token", s.getAccessToken());
+                                editor.putString("token", "Bearer " + s.getAccessToken());
                                 editor.putString("refreshToken", s.getRefreshToken());
+                                editor.putString("email", email);
                                 editor.commit();
-                                Log.d(TAG, "loginUser: " + s.getAccessToken());
                             },
                             throwable -> {
                                 listener.setLoginFailure("Vui lòng kiểm tra email hoặc password");
@@ -79,5 +88,24 @@ public class LoginModelImpl implements LoginModel {
         Intent intent = new Intent(context, c);
         activity.startActivity(intent);
         activity.finish();
+    }
+
+    @Override
+    public void getUserInfo() {
+        token = preferences.getString("token", "");
+        email = preferences.getString("email", "nks.trampnn@gamil.com");
+        retrofitInfo = RetrofitUtils.apiUserInfo(token);
+        CompositeDisposable compositeDisposable1 = new CompositeDisposable();
+        compositeDisposable1.add(retrofitInfo.userInfo(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    editor.putString("userId", String.valueOf(s.getData().getId()));
+                    editor.commit();
+                    Log.d(TAG, "getUserInfo: " + s.getData().getId());
+                }, throwable -> {
+                    Log.d(TAG, "getUserInfo: " + token);
+                })
+        );
     }
 }

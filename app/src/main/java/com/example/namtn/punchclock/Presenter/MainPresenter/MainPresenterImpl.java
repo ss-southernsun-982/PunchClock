@@ -45,6 +45,7 @@ public class MainPresenterImpl implements MainPresenter, MainModel.onMainListene
     @Override
     public void onDestroy() {
         mainView = null;
+        mainModel.destroyHandle();
     }
 
     @Override

@@ -18,5 +18,7 @@ public interface LoginModel {
 
     void loginUser(String email, String password, onLoginListener onLoginListener);
 
+    void getUserInfo();
+
     void IntentClass(Class c);
 }

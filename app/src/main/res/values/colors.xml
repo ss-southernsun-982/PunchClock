@@ -8,7 +8,8 @@
 
     <color name="colorGrayWhite">#87e5da</color>
     <!--color red-->
-    <color name="colorRed">#db2d43</color>
+    <color name="colorRed">#e60000</color>
+    <color name="colorGreen">#00b33c</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
 </resources>

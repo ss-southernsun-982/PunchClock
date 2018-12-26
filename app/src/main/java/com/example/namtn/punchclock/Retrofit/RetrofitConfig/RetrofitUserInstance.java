@@ -10,9 +10,9 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitInstance {
+public class RetrofitUserInstance {
     public static Retrofit retrofit = null;
-    public static String baseUrl = "http://demo.vnlead.webstarterz.com/";
+    public static String baseUrl = "http://ho.nks.com.vn/";
 
     public static Retrofit getInstance(String subBaseUrl) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()

@@ -1,4 +1,4 @@
-package com.example.namtn.punchclock.Retrofit.RetrofitResponse;
+package com.example.namtn.punchclock.Retrofit.RetrofitResponse.UserResult;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

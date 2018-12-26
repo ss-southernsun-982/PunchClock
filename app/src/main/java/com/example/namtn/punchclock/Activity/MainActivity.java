@@ -1,11 +1,14 @@
 package com.example.namtn.punchclock.Activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.example.namtn.punchclock.Activity.Attendance.AttendanceActivity;
 import com.example.namtn.punchclock.Adapter.MenuMainAdapter;
 import com.example.namtn.punchclock.Model.MainModel.MainModelImpl;
 import com.example.namtn.punchclock.Presenter.MainPresenter.MainPresenter;
@@ -19,8 +22,9 @@ public class MainActivity extends BaseActivity implements MainView, AdapterView
     private GridView mGridViewMain;
     private MainPresenter mMainPresenter;
     private TextView mTextViewHour, mTextViewMinute, mTextViewSecond, mTextViewDate,
-            mTextViewMonth, mTextViewYear;
+            mTextViewLocation;
     private Runnable r;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,7 @@ public class MainActivity extends BaseActivity implements MainView, AdapterView
         mTextViewMinute = findViewById(R.id.txt_minute_main);
         mTextViewSecond = findViewById(R.id.txt_second_main);
         mTextViewDate = findViewById(R.id.txt_date_main);
+        mTextViewLocation = findViewById(R.id.current_location_main);
     }
 
     @Override
@@ -48,6 +53,7 @@ public class MainActivity extends BaseActivity implements MainView, AdapterView
 
     @Override
     protected void initData() {
+        preferences = getSharedPreferences("data_map", Context.MODE_PRIVATE);
         mMainPresenter = new MainPresenterImpl(this, new MainModelImpl(this));
         mMainPresenter.menuConfig();
     }
@@ -79,6 +85,7 @@ public class MainActivity extends BaseActivity implements MainView, AdapterView
         mTextViewMinute.setText(String.valueOf(minute));
         mTextViewSecond.setText(String.valueOf(second));
         mTextViewDate.setText(date + "/" + month + "/" + year);
+        mTextViewLocation.setText(preferences.getString("mAddress", "Not address found"));
     }
 
     @Override
@@ -88,5 +95,11 @@ public class MainActivity extends BaseActivity implements MainView, AdapterView
                 mMainPresenter.IntentClass(AttendanceActivity.class);
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mMainPresenter.onDestroy();
     }
 }

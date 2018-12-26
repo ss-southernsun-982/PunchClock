@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/root_layout_item_month"
+    android:padding="@dimen/margin_8dp">
+
+    <RelativeLayout
+        android:id="@+id/layout_background_list_month"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circle_background_white">
+
+        <TextView
+            android:text="JUN"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/colorWhite"
+            android:layout_centerInParent="true"
+            android:id="@+id/txt_month_list_attendance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

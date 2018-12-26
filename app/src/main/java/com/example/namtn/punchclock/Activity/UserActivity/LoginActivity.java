@@ -92,6 +92,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     public void loginSuccess(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         mPresenterLogin.IntentClass(MainActivity.class);
+        mPresenterLogin.getUserInfo();
     }
 
     private void loginUser(){
