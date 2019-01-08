@@ -1,8 +1,10 @@
 package com.example.namtn.punchclock.Retrofit.RetrofitConfig;
 
+import com.example.namtn.punchclock.Retrofit.RetrofitResponse.AssignLeaveResult.AssignLeaveResult;
 import com.example.namtn.punchclock.Retrofit.RetrofitResponse.AttendanceResult.AttendanceResult;
 import com.example.namtn.punchclock.Retrofit.RetrofitResponse.CheckInResult.CheckInResult;
 import com.example.namtn.punchclock.Retrofit.RetrofitResponse.CheckOutResult.CheckOutResult;
+import com.example.namtn.punchclock.Retrofit.RetrofitResponse.LeavesResult.LeavesResult;
 import com.example.namtn.punchclock.Retrofit.RetrofitResponse.UserResult.LoginResult;
 import com.example.namtn.punchclock.Retrofit.RetrofitResponse.UserResult.UserInfo.UserInfoResult;
 
@@ -47,5 +49,21 @@ public interface RetrofitAPIs {
             @Field("date") String date,
             @Field("emp_id") String emp_id,
             @Field("checkin_ip") String checkin_ip
+    );
+
+    @FormUrlEncoded
+    @POST("leaves")
+    Observable<LeavesResult> leaves(
+            @Field("emp_id") String emp_id
+    );
+
+    @FormUrlEncoded
+    @POST("leaves/add")
+    Observable<AssignLeaveResult> leavesAdd(
+            @Field("emp_id") String emp_id,
+            @Field("date") String date,
+            @Field("reason") String reason,
+            @Field("halfday") String halfDay,
+            @Field("type_id") String typeId
     );
 }

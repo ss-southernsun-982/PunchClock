@@ -14,12 +14,14 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:layout_centerVertical="true"
                 android:id="@+id/btn_back_toolbar_attendance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_24dp" />
 
             <TextView
+                android:layout_centerVertical="true"
                 android:id="@+id/txt_title_toolbar_attendance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

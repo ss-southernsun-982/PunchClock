@@ -48,7 +48,6 @@ public class LoginModelImpl implements LoginModel {
         String grant_type = "password";
         String client_id = "2";
         String client_secret = "s4ao1Y6WD7kxNUnkn0QeiJmJej7JckWVtPsC7Cqp";
-        Log.d(TAG, "loginUser: " + email);
         if (email.isEmpty()) {
             listener.hideProgressDialog();
             listener.setErrorEmail("Vui lòng nhập email");
@@ -66,12 +65,13 @@ public class LoginModelImpl implements LoginModel {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(
                             s -> {
-                                listener.setLoginSuccess("Đăng nhập thành công");
                                 listener.hideProgressDialog();
                                 editor.putString("token", "Bearer " + s.getAccessToken());
                                 editor.putString("refreshToken", s.getRefreshToken());
                                 editor.putString("email", email);
                                 editor.commit();
+                                listener.setLoginSuccess("");
+                                Log.d(TAG, "loginUser: " + s.getAccessToken());
                             },
                             throwable -> {
                                 listener.setLoginFailure("Vui lòng kiểm tra email hoặc password");
@@ -91,9 +91,9 @@ public class LoginModelImpl implements LoginModel {
     }
 
     @Override
-    public void getUserInfo() {
-        token = preferences.getString("token", "");
-        email = preferences.getString("email", "nks.trampnn@gamil.com");
+    public void getUserInfo(onLoginListener listener) {
+        token = preferences.getString("token", "0");
+        email = preferences.getString("email", "0");
         retrofitInfo = RetrofitUtils.apiUserInfo(token);
         CompositeDisposable compositeDisposable1 = new CompositeDisposable();
         compositeDisposable1.add(retrofitInfo.userInfo(email)
@@ -102,9 +102,12 @@ public class LoginModelImpl implements LoginModel {
                 .subscribe(s -> {
                     editor.putString("userId", String.valueOf(s.getData().getId()));
                     editor.commit();
+                    listener.getInfoSuccess("Đăng nhập thành công");
                     Log.d(TAG, "getUserInfo: " + s.getData().getId());
+                    Log.d(TAG, "getUserInfo: " + s.getData().getRole());
                 }, throwable -> {
-                    Log.d(TAG, "getUserInfo: " + token);
+                    Log.d(TAG, "getUserInfo: " + throwable.getMessage());
+                    listener.getInfoFailure("Serve error");
                 })
         );
     }

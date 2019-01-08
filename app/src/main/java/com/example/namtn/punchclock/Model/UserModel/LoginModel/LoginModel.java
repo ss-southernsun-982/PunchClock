@@ -14,11 +14,15 @@ public interface LoginModel {
         void setLoginFailure(String error);
 
         void setLoginSuccess(String message);
+
+        void getInfoFailure(String s);
+
+        void getInfoSuccess(String s);
     }
 
     void loginUser(String email, String password, onLoginListener onLoginListener);
 
-    void getUserInfo();
+    void getUserInfo(onLoginListener listener);
 
     void IntentClass(Class c);
 }

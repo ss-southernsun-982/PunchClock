@@ -16,4 +16,12 @@ public class RetrofitUtils {
     public static RetrofitAPIs apiAttendance(){
         return RetrofitAttendanceInstance.getInstance().create(RetrofitAPIs.class);
     }
+
+    public static RetrofitAPIs apiLeaves(){
+        return RetrofitAttendanceInstance.getInstance().create(RetrofitAPIs.class);
+    }
+
+    public static RetrofitAPIs apiLeavesAdd(){
+        return RetrofitAttendanceInstance.getInstance().create(RetrofitAPIs.class);
+    }
 }

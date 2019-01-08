@@ -6,7 +6,17 @@ public interface MainPresenter {
 
     void getDateTime();
 
+    void fetchDataDate();
+
+    void pushDataCheckInAttendance();
+
+    void pushDataCheckOutAttendance();
+
+    void calculatorTimeWorking();
+
     void onDestroy();
+
+    void checkVisibleCheckIn();
 
     void IntentClass(Class c);
 }

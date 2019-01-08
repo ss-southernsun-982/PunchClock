@@ -1,10 +1,49 @@
 <resources>
-    <string name="app_name">PunchClock</string>
+    <string name="app_name">NKS HO</string>
     <string name="user_email">Email</string>
     <string name="user_password">Password</string>
     <string name="title_login">Login</string>
     <string name="google_maps_key">AIzaSyBMA30UXts64nWtjWfjbLFuOy9qR2gqGGY</string>
-    <string name="token">
-        Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjIyMWQ0ZjdiMjY4MjkxMDAwODFmMTUwMDdiNGUyMTE2MGJjZjBiZTQyZDIzMWRkMmViOTE1ZDVjYTFkNzYzN2M2OThhNmY0NzFkYjkxYzI2In0.eyJhdWQiOiIyIiwianRpIjoiMjIxZDRmN2IyNjgyOTEwMDA4MWYxNTAwN2I0ZTIxMTYwYmNmMGJlNDJkMjMxZGQyZWI5MTVkNWNhMWQ3NjM3YzY5OGE2ZjQ3MWRiOTFjMjYiLCJpYXQiOjE1NDU3MzE5OTcsIm5iZiI6MTU0NTczMTk5NywiZXhwIjoxNTc3MjY3OTk3LCJzdWIiOiI2NSIsInNjb3BlcyI6W119.M7kI0RULnk1VqJd9G41DAEsP9Aey_im1Gw9Otl3BtTHVS6RXtzEhnmJ6WA4mxf0wUyAzsNl0Kn1maHC26LX9CKdK-1bc317M8NblEWkosHG40rSLEndWJvOhkGeB28NUDPuC0eV5MSAS-S7pjUmozDOAy1tSkHADMCkuJkIdl2ZnFybzWH_vFIm4G7tMRLMqGokd94EZ4CulYjTDJe73NLNXjzguklMzhmz69kdhQGGF372-QIZfVoVpzVfT1bLxpIl7J062TrbpsBqYsmZHOe64yyqTevwjm4mNJ0fYM26_kGgfHLnughSL2gz_KoEfYaM56mSItm4ABJX20gtnwUqZxieYjGg-zRSByPERH_OASN1iDP3by-D1SpB6lR_5gGG1YWQNiMu13IuEhupUyPP3KWhy5j0ORQntyMJdtqpvK1eUxzhU-7UnVJ50kMpi1iAiKDYZHIoMepikR_YF2Oub8Az5pUa0hwlqIIoNFB6sKthyZv1qJAf4or7gU5Uz-Pja7GIrsw7x8jJ4HuvVjz0E4MLP1qEDk0QhFJ9Va_xAy0bAASZlgqNw7sjVri_iOl7en7CELhSBgMCSD-6UJRPfVDNCLmr1duSt-vNHdY9bjsOFbBMFbkrGTZQ6MCavLf-x5jRkT4vUfGZWSdMWRG-1gLcnI67S-7tezstnc3Q
-    </string>
+    <string name="material_calendar_monday">Mon</string>
+    <string name="material_calendar_tuesday">Tue</string>
+    <string name="material_calendar_wednesday">Wed</string>
+    <string name="material_calendar_thursday">Thu</string>
+    <string name="material_calendar_friday">Fri</string>
+    <string name="material_calendar_saturday">Sat</string>
+    <string name="material_calendar_sunday">Sun</string>
+
+    <array name="material_calendar_months_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+
+    <string-array name="spinner_type_day">
+        <item>Bệnh</item>
+        <item>Nhà có việc bận</item>
+        <item>Hỏng xe</item>
+        <item>Không có trong danh sách</item>
+    </string-array>
+
+    <string-array name="spinner_days_leave">
+        <item>2 ngày</item>
+        <item>3 ngày</item>
+        <item>4 ngày</item>
+        <item>Số lượng khác</item>
+    </string-array>
+
+    <string name="material_calendar_today_button">Today</string>
+    <string name="material_calendar_positive_button">OK</string>
+    <string name="material_calendar_negative_button">Cancel</string>
+    <string name="open_location_settings">Open</string>
+    <string name="cancel">Cancel</string>
 </resources>

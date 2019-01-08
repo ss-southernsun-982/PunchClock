@@ -56,6 +56,20 @@ public class LoginPresenterImpl implements LoginPresenter, LoginModel.onLoginLis
     }
 
     @Override
+    public void getInfoFailure(String s) {
+        if (mLoginView != null) {
+            mLoginView.getInfoFailure(s);
+        }
+    }
+
+    @Override
+    public void getInfoSuccess(String s) {
+        if (mLoginView != null) {
+            mLoginView.getInfoSuccess(s);
+        }
+    }
+
+    @Override
     public void loginUser(String email, String password) {
         if (mLoginMode != null) {
             mLoginMode.loginUser(email, password, this);
@@ -64,8 +78,8 @@ public class LoginPresenterImpl implements LoginPresenter, LoginModel.onLoginLis
 
     @Override
     public void getUserInfo() {
-        if (mLoginMode != null){
-            mLoginMode.getUserInfo();
+        if (mLoginMode != null) {
+            mLoginMode.getUserInfo(this);
         }
     }
 

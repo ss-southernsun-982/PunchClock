@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.Profile.ProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_avatar_profile"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/circle_background_blue"
+            android:padding="@dimen/margin_8dp"
+            android:src="@drawable/ic_four_a" />
+
+        <TextView
+            android:id="@+id/txt_user_name_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/image_cancel_profile"
+            android:layout_toRightOf="@id/image_avatar_profile"
+            android:fontFamily="@font/roboto_bold"
+            android:paddingLeft="@dimen/padding_16dp"
+            android:paddingRight="@dimen/margin_8dp"
+            android:text="Sunny Bui"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textLarger" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image_cancel_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/margin_8dp"
+            android:src="@drawable/ic_cancel_blue_24dp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Employee"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLarger" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:id="@+id/txt_info_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Info"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+
+                <TextView
+                    android:id="@+id/txt_time_logs_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Time Logs"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+
+                <TextView
+                    android:id="@+id/txt_leaves_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Leaves"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="System"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLarger" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Notification"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Holiday"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Report"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Contact"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLarger" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Ticket"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Hotine"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -12,4 +12,8 @@ public interface LoginView {
     void loginFailure(String error);
 
     void loginSuccess(String message);
+
+    void getInfoFailure(String s);
+
+    void getInfoSuccess(String s);
 }

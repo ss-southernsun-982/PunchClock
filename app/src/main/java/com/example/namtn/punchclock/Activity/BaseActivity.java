@@ -3,15 +3,18 @@ package com.example.namtn.punchclock.Activity;
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -22,6 +25,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.namtn.punchclock.Network.WifiScanReceiver;
+import com.example.namtn.punchclock.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -55,14 +59,17 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
     private ArrayList<String> permissions;
     private static final int REQUEST_CODE_PERMISSION = 111;
     private Location currentLocation;
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+    private SharedPreferences preferences, preferencesUser;
+    private SharedPreferences.Editor editor, editorUser;
     private String TAG = "DESTANCE___1";
 
     private boolean mLocationPermissionApproved = false;
     private List<ScanResult> mAccessPointsSupporting80211mc;
     private WifiManager mWifiManager;
     private WifiScanReceiver mWifiScanReceiver;
+    private LocationManager lm;
+    private boolean gps_enabled = false;
+    private boolean network_enabled = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,8 +81,31 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
         initEventControl();
         initData();
         locationPermission();
+        checkEnableGPS();
         preferences = getApplicationContext().getSharedPreferences("data_map", MODE_PRIVATE);
+        preferencesUser = getApplicationContext().getSharedPreferences("user_data", MODE_PRIVATE);
         editor = preferences.edit();
+        editorUser = preferencesUser.edit();
+
+        if (savedInstanceState != null) {
+
+        } else {
+
+        }
+    }
+
+    public static void main(String[] args) {
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
     }
 
     private void initWifiScan() {
@@ -85,7 +115,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
         mWifiScanReceiver = new WifiScanReceiver(mWifiManager, mLocationPermissionApproved,
                 mAccessPointsSupporting80211mc);
 
-        if (mWifiScanReceiver.mLocationPermissionApproved){
+        if (mWifiScanReceiver.mLocationPermissionApproved) {
             finish();
         }
     }
@@ -276,7 +306,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
         try {
             mListAddress = geocoder.getFromLocation(location.getLatitude(), location.getLongitude
                     (), 1);
-            if (mListAddress.size() > 0){
+            if (mListAddress.size() > 0) {
                 mAddress = mListAddress.get(0).getAddressLine(0);
             } else {
                 mAddress = "Not found address in here";
@@ -292,14 +322,53 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
         Log.d(TAG, "onLocationChanged: " + getDate(time, "yyyy-MM-dd"));
     }
 
-    private String getDate(long milliSeconds, String dateFormat)
-    {
+    private String getDate(long milliSeconds, String dateFormat) {
         // Create a DateFormatter object for displaying date in specified format.
         DateFormat formatter = new SimpleDateFormat(dateFormat);
 
-        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        // Create a calendar object that will convert the date and time value in milliseconds to
+        // date.
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(milliSeconds);
         return formatter.format(calendar.getTime());
+    }
+
+    public void checkEnableGPS(){
+        lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        try {
+            gps_enabled = lm.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        } catch(Exception ex) {}
+
+        try {
+            network_enabled = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        } catch(Exception ex) {}
+
+        if(!gps_enabled && !network_enabled) {
+            // notify user
+            AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+            dialog.setMessage("Vui lòng bật GPS");
+            dialog.setPositiveButton(getResources().getString(R.string.open_location_settings), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                    // TODO Auto-generated method stub
+                    Intent myIntent = new Intent( Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivity(myIntent);
+                    //get gps
+                }
+            });
+            dialog.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface paramDialogInterface, int paramInt) {
+                    // TODO Auto-generated method stub
+                    finish();
+                }
+            });
+            dialog.show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

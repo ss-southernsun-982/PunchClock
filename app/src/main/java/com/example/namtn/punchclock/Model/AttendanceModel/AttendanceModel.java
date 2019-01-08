@@ -25,6 +25,8 @@ public interface AttendanceModel {
         void onPushDataCheckOutError(String s);
 
         void displayTimeWorking(String time);
+
+        void visibleCheckIn(boolean b);
     }
 
     void fetchDataAttendance(onPushDataAttendanceListener listener);
@@ -36,6 +38,8 @@ public interface AttendanceModel {
     void configDataMonthAttendance(onPushDataAttendanceListener listener);
 
     void calculatorTimeWorking(onPushDataAttendanceListener listener);
+
+    void checkVisibleCheckIn(onPushDataAttendanceListener listener);
 
     void onDestroyHandle();
 }

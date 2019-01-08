@@ -87,6 +87,11 @@ public class AttendancePresenterImpl implements AttendancePresenter, AttendanceM
     }
 
     @Override
+    public void visibleCheckIn(boolean b) {
+
+    }
+
+    @Override
     public void fetchDataDate() {
         if (attendanceModel != null){
             attendanceModel.fetchDataAttendance(this);

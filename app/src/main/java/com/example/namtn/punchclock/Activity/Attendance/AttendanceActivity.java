@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class AttendanceActivity extends BaseActivity implements AttendanceView, 
     private TextView mTextViewTimeWorking;
     private LinearLayout mLinearCheckOut;
     private ImageView mImageViewBackAttendance;
+    private RelativeLayout mRelativeLayoutCheckOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class AttendanceActivity extends BaseActivity implements AttendanceView, 
         mTextViewTimeWorking = findViewById(R.id.txt_time_working_attendance);
         mLinearCheckOut = findViewById(R.id.layout_check_out_attendance);
         mImageViewBackAttendance = findViewById(R.id.btn_back_toolbar_attendance);
+        mRelativeLayoutCheckOut = findViewById(R.id.layout_button_check);
     }
 
     @Override
@@ -121,6 +124,7 @@ public class AttendanceActivity extends BaseActivity implements AttendanceView, 
         }
         mButtonCheckInAttendance.setVisibility(View.VISIBLE);
         mLinearCheckOut.setVisibility(View.GONE);
+        mRelativeLayoutCheckOut.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -128,7 +132,7 @@ public class AttendanceActivity extends BaseActivity implements AttendanceView, 
         if (message != null){
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         }
-        mButtonCheckOutAttendance.setEnabled(false);
+        mRelativeLayoutCheckOut.setVisibility(View.GONE);
     }
 
     @Override
@@ -136,7 +140,7 @@ public class AttendanceActivity extends BaseActivity implements AttendanceView, 
         if (error != null){
             Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
         }
-        mButtonCheckOutAttendance.setEnabled(true);
+        mRelativeLayoutCheckOut.setVisibility(View.VISIBLE);
     }
 
     @Override

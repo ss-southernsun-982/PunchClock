@@ -19,6 +19,8 @@ import com.example.namtn.punchclock.Retrofit.RetrofitResponse.AttendanceResult.A
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -43,11 +45,12 @@ public class AttendanceModelImpl implements AttendanceModel {
     private AttendanceDateAdapter adapter;
     private List<AttendanceData> listAttendanceData;
     private AttendanceMonthAdapter adapterMonth;
-    private Calendar calendar1, calendar2;
+    private Calendar calendar;
     private long millisecond1, millisecond2, millisecond3;
     private Handler handler;
     private Runnable runnable;
     private String toDay;
+    private SimpleDateFormat simpleDateFormat;
 
     public AttendanceModelImpl(Context context) {
         this.context = context;
@@ -59,9 +62,11 @@ public class AttendanceModelImpl implements AttendanceModel {
         }
         preferences = context.getSharedPreferences("data_map", Context.MODE_PRIVATE);
         preferencesUser = context.getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        calendar = Calendar.getInstance();
         editor = preferencesUser.edit();
         listMonth = new ArrayList<>();
         listAttendanceData = new ArrayList<>();
+        simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
     }
 
     private String getIpAddress() {
@@ -104,8 +109,11 @@ public class AttendanceModelImpl implements AttendanceModel {
     public void fetchDataAttendance(onPushDataAttendanceListener listener) {
         listener.showProgressBar();
         listAttendanceData.clear();
-        Date c = Calendar.getInstance().getTime();
+        calendar = Calendar.getInstance();
+        Date c = calendar.getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat monthYear = new SimpleDateFormat("MM-yyyy");
         emp_id = preferencesUser.getString("userId", "0");
         retrofitAPIs = RetrofitUtils.apiAttendance();
         compositeDisposable = new CompositeDisposable(retrofitAPIs.getAttendance(emp_id)
@@ -113,25 +121,95 @@ public class AttendanceModelImpl implements AttendanceModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         s -> {
-                            int errorCode = 0;
-                            for (int i = 0; i < s.getData().size(); i++) {
-                                if (s.getData().get(i).getDate().equalsIgnoreCase(String.valueOf
-                                        (df.format(c)))) {
-                                    errorCode++;
-                                    break;
-                                }
-                            }
-                            if (errorCode != 0) {
-                                listener.onPushDataCheckInSuccess(null);
-                            } else {
-                                listener.onPushDataCheckInError(null);
-                                AttendanceData data = new AttendanceData();
+                            editor.putBoolean("isCheckIn", false);
+                            editor.putBoolean("isCheckOut", false);
+                            editor.putLong("timeStart", 0);
+                            editor.putLong("timeEnd", 0);
+                            editor.commit();
+                            AttendanceData data;
+                            Date checkIn = null;
+                            Date checkOut = null;
+                            Date date = null;
+                            Date date2 = null;
+                            data = s.getData().get(s.getData().size() - 1);
+                            if (!data.getDate().equalsIgnoreCase(String.valueOf
+                                    (df.format(c)))) {
+                                data = new AttendanceData();
                                 data.setDate(df.format(c));
                                 listAttendanceData.add(data);
-                                editor.putBoolean("checkOut", true);
+                            } else {
+                                checkIn = dateFormat.parse(data.getCheckIn());
+                                checkOut = dateFormat.parse(data.getCheckOut());
+                                Log.d(TAG, "fetchDataAttendance: " + data.getCheckOut());
+                                if (data.getCheckIn().equalsIgnoreCase
+                                        ("0000-00-00 00:00:00")) {
+                                    editor.putBoolean("isCheckIn", false);
+                                    editor.putLong("timeStart", 0);
+                                    editor.commit();
+                                } else if (!data.getCheckIn().equalsIgnoreCase
+                                        ("0000-00-00 00:00:00")) {
+                                    editor.putBoolean("isCheckIn", true);
+                                    editor.putLong("timeStart", checkIn.getTime());
+                                    Log.d(TAG, "time start: " + checkIn.getTime());
+                                    editor.commit();
+                                }
+                                if (data.getCheckOut().equalsIgnoreCase
+                                        ("0000-00-00 00:00:00")) {
+                                    editor.putBoolean("isCheckOut", false);
+                                    editor.putLong("timeEnd", 0);
+                                    Log.d(TAG, "time end: " + checkOut.getTime());
+                                    editor.commit();
+                                } else if (!data.getCheckOut().equalsIgnoreCase
+                                        ("0000-00-00 00:00:00")) {
+                                    editor.putBoolean("isCheckOut", true);
+                                    editor.putLong("timeEnd", checkOut.getTime());
+                                    editor.commit();
+                                }
                             }
-                            listAttendanceData.addAll(s.getData());
+                            for (int i = 0; i < s.getData().size(); i++) {
+                                date = df.parse(s.getData().get(i).getDate());
+                                if (monthYear.format(c).equalsIgnoreCase(monthYear.format(date))) {
+                                    if (i > 0) {
+                                        date2 = df.parse(s.getData().get(i - 1).getDate());
+                                        if (!df.format(date).equalsIgnoreCase(df.format(date2))) {
+                                            listAttendanceData.add(s.getData().get(i));
+                                        }
+                                    }
+                                }
+                            }
+                            Collections.sort(listAttendanceData, new Comparator<AttendanceData>() {
+                                @Override
+                                public int compare(AttendanceData o1, AttendanceData o2) {
+                                    Date date1 = null;
+                                    Date date2 = null;
+                                    long time1 = 0;
+                                    long time2 = 0;
+                                    try {
+                                        date1 = df.parse(o1.getDate());
+                                        date2 = df.parse(o2.getDate());
+
+                                        time1 = date1.getTime();
+                                        time2 = date2.getTime();
+                                    } catch (Exception e) {
+                                        Log.d(TAG, "compare: error " + e.getMessage());
+                                    }
+                                    return Long.compare(time2, time1);
+                                }
+                            });
+
+                            if (preferencesUser.getBoolean("isCheckIn", false) == true) {
+                                listener.onPushDataCheckInSuccess(null);
+                            } else if (preferencesUser.getBoolean("isCheckIn", true) == false) {
+                                listener.onPushDataCheckInError(null);
+                            }
+                            if (preferencesUser.getBoolean("isCheckOut", false) == true) {
+                                listener.onPushDataCheckOutSuccess(null);
+                            } else if (preferencesUser.getBoolean("isCheckOut", true) == false) {
+                                listener.onPushDataCheckOutError(null);
+                            }
+
                             adapter = new AttendanceDateAdapter(context, listAttendanceData);
+                            adapter.notifyDataSetChanged();
                             listener.fetchDataAttendanceSuccess(adapter);
                             listener.hideProgressBar();
                         },
@@ -142,20 +220,11 @@ public class AttendanceModelImpl implements AttendanceModel {
                         }
                 )
         );
-
-        if (preferencesUser.getBoolean("checkOut", false)){
-            listener.onPushDataCheckOutSuccess(null);
-        } else {
-            listener.onPushDataCheckInError(null);
-        }
     }
 
     @Override
     public void pushDataCheckInAttendance(onPushDataAttendanceListener listener) {
-        calendar1 = Calendar.getInstance();
-        millisecond1 = calendar1.getTimeInMillis();
-        editor.putLong("timeStart", millisecond1);
-        editor.commit();
+        calendar = Calendar.getInstance();
         retrofitAPIs = RetrofitUtils.apiAttendance();
         compositeDisposable = new CompositeDisposable();
         listener.showProgressBar();
@@ -175,7 +244,6 @@ public class AttendanceModelImpl implements AttendanceModel {
                     .subscribe(
                             s -> {
                                 listener.hideProgressBar();
-                                listener.onPushDataCheckInSuccess(s.getMessage());
                                 this.calculatorTimeWorking(listener);
                                 this.fetchDataAttendance(listener);
                             }, throwable -> {
@@ -192,9 +260,10 @@ public class AttendanceModelImpl implements AttendanceModel {
         retrofitAPIs = RetrofitUtils.apiAttendance();
         compositeDisposable = new CompositeDisposable();
         listener.showProgressBar();
-        Date c = Calendar.getInstance().getTime();
+        calendar = Calendar.getInstance();
+        Date c = calendar.getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        toDay = preferences.getString("mLocationTime","0");
+        toDay = preferences.getString("mLocationTime", "0");
         checkin_ip = getIpAddress();
         emp_id = preferencesUser.getString("userId", "0");
         compositeDisposable.add(retrofitAPIs.checkOut(df.format(c), emp_id, checkin_ip)
@@ -203,9 +272,6 @@ public class AttendanceModelImpl implements AttendanceModel {
                 .subscribe(
                         s -> {
                             listener.onPushDataCheckOutSuccess(s.getMessage());
-                            editor.putLong("timeStart", 0);
-                            editor.putBoolean("checkOut", true);
-                            editor.commit();
                             this.onDestroyHandle();
                             this.fetchDataAttendance(listener);
                         },
@@ -220,12 +286,13 @@ public class AttendanceModelImpl implements AttendanceModel {
     @Override
     public void calculatorTimeWorking(onPushDataAttendanceListener listener) {
         millisecond3 = preferencesUser.getLong("timeStart", 0);
-        if (millisecond3 != 0) {
+        millisecond2 = preferencesUser.getLong("timeEnd", 0);
+        if (millisecond3 != 0 && millisecond2 == 0) {
             runnable = new Runnable() {
                 @Override
                 public void run() {
-                    calendar2 = Calendar.getInstance();
-                    millisecond2 = calendar2.getTimeInMillis();
+                    calendar = Calendar.getInstance();
+                    millisecond2 = calendar.getTimeInMillis();
                     long millisecond = millisecond2 - millisecond3;
                     long seconds = millisecond / 1000;
                     long minutes = seconds / 60;
@@ -239,8 +306,26 @@ public class AttendanceModelImpl implements AttendanceModel {
             handler = new Handler();
             handler.postDelayed(runnable, 0);
         } else {
+            this.onDestroyHandle();
+            long millisecond = millisecond2 - millisecond3;
+            long seconds = millisecond / 1000;
+            long minutes = seconds / 60;
+            long hours = minutes / 60;
+            long days = hours / 24;
+            String time = hours % 24 + ":" + minutes % 60 + ":" + seconds % 60;
+            listener.displayTimeWorking(time);
             Log.d(TAG, "calculatorTimeWorking: Disable time working!!!");
         }
+    }
+
+    @Override
+    public void checkVisibleCheckIn(onPushDataAttendanceListener listener) {
+//        if (!preferencesUser.getString("checkin", "0").equalsIgnoreCase(simpleDateFormat.format
+//                (calendar.getTime()))){
+//            listener.visibleCheckIn(true);
+//        } else {
+//            listener.visibleCheckIn(false);
+//        }
     }
 
     @Override

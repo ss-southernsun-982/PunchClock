@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.namtn.punchclock"
+        applicationId "vn.com.nks.ho.app"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -50,4 +50,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-nearby:16.0.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
+    implementation 'com.github.npanigrahy:Custom-Calendar-View:v1.1'
 }

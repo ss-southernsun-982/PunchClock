@@ -1,6 +1,7 @@
 package com.example.namtn.punchclock.Activity.UserActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,10 +23,12 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     private String strUser, strPass;
     private LoginPresenter mPresenterLogin;
     private ProgressBar mProgressBarLogin;
+    private String TAG = "LOGIN_MAIN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "initView: create UI" );
     }
 
     @Override
@@ -90,9 +93,18 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
     @Override
     public void loginSuccess(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-        mPresenterLogin.IntentClass(MainActivity.class);
         mPresenterLogin.getUserInfo();
+    }
+
+    @Override
+    public void getInfoFailure(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void getInfoSuccess(String s) {
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+        mPresenterLogin.IntentClass(MainActivity.class);
     }
 
     private void loginUser(){

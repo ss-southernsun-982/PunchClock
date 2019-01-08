@@ -10,6 +10,12 @@
     <!--color red-->
     <color name="colorRed">#e60000</color>
     <color name="colorGreen">#00b33c</color>
+    <color name="colorYellow">#f4e400</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
+
+    <color name="summer">#44eebd82</color>
+    <color name="fall">#44d8d27e</color>
+    <color name="winter">#44a1c1da</color>
+    <color name="spring">#448da64b</color>
 </resources>
