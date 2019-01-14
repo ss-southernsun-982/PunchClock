@@ -1,8 +1,6 @@
 package com.example.namtn.punchclock.Model.LeavesModel;
 
-import com.example.namtn.punchclock.Retrofit.RetrofitResponse.LeavesResult.LeavesData;
-
-import java.util.ArrayList;
+import com.example.namtn.punchclock.CustomWidget.CustomCalendar.AdapterCalendarLeaves;
 
 public interface LeavesModel {
 
@@ -11,10 +9,10 @@ public interface LeavesModel {
 
         void hideProgressBar();
 
-        void fetchDataLeavesSuccess(ArrayList<LeavesData> leavesData);
+        void initCalendarSuccess(AdapterCalendarLeaves mAdapterCalendarLeaves);
 
-        void fetchDataLeavesError(String error);
+        void setTitleMonth(String prevMonth, String currentMonth, String nextMonth);
     }
 
-    void fetchDataLeaves(onLeavesListener listener);
+    void initCalendarLeave(onLeavesListener listener, int ofMonth, int year);
 }

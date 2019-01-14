@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/bg"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".Activity.UserActivity.LoginActivity">
@@ -16,28 +16,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_centerInParent="true"
+            android:layout_gravity="center"
             android:padding="@dimen/padding_16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_50dp"
-                android:background="@drawable/border_background_white"
+                android:layout_centerInParent="true"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="120dp"
+                <ImageView
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="60dp"
-                    android:fontFamily="@font/roboto_bold"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:text="@string/title_login"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/textLarger" />
+                    android:src="@drawable/diary_text" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -46,29 +39,31 @@
                     android:padding="@dimen/padding_16dp">
 
                     <EditText
-                        android:text="nks.namtn@gmail.com"
                         android:id="@+id/edit_user_email_login"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/custom_edittetx_login"
-                        android:drawableLeft="@mipmap/ic_user"
-                        android:drawablePadding="@dimen/margin_8dp"
+                        android:background="@drawable/custom_edittext_password_border"
                         android:hint="@string/user_email"
                         android:inputType="textEmailAddress"
+                        android:paddingLeft="@dimen/padding_16dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:text="nks.namtn@gmail.com"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textMedium" />
 
                     <EditText
-                        android:text="123456"
                         android:id="@+id/edit_user_password_login"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/margin_16dp"
-                        android:background="@drawable/custom_edittetx_login"
-                        android:drawableLeft="@mipmap/ic_password"
-                        android:drawablePadding="@dimen/margin_8dp"
+                        android:layout_marginTop="@dimen/dimen_5dp"
+                        android:background="@drawable/custom_edittext_uername_border"
                         android:hint="@string/user_password"
                         android:inputType="textPassword"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:text="123456"
                         android:textColor="@color/colorBlack"
                         android:textSize="@dimen/textMedium" />
 
@@ -76,28 +71,13 @@
                         android:id="@+id/btn_access_login"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/padding_32dp"
-                        android:background="@drawable/circle_background_white"
+                        android:layout_marginTop="@dimen/margin_16dp"
+                        android:background="@drawable/custom_button_login"
                         android:fontFamily="@font/roboto_bold"
                         android:text="@string/title_login"
                         android:textColor="@color/colorWhite" />
                 </LinearLayout>
             </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_avatar_login"
-                android:layout_width="@dimen/dimen_avatar"
-                android:layout_height="@dimen/dimen_avatar"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/circle_background_blue"
-                android:padding="8dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_avatar_login"
-                    android:layout_width="@dimen/dimen_avatar"
-                    android:layout_height="@dimen/dimen_avatar"
-                    android:src="@drawable/ic_four_a" />
-            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
 

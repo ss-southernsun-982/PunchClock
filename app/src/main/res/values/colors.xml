@@ -18,4 +18,7 @@
     <color name="fall">#44d8d27e</color>
     <color name="winter">#44a1c1da</color>
     <color name="spring">#448da64b</color>
+
+    <color name="colorGray">#c9c9c9</color>
+    <color name="coloGray">#d2d2d2</color>
 </resources>

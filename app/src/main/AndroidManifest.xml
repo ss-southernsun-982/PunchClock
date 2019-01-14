@@ -44,7 +44,12 @@
         <activity
             android:name=".Activity.Leaves.AssignLeaveActivity"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".Activity.Profile.ProfileActivity"></activity>
+        <activity android:name=".Activity.Profile.ProfileActivity" />
+        <activity android:name=".Activity.EnterPassCodeActivity" />
+        <activity
+            android:name=".Activity.Dairy.CreateNewDairyActivity"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity android:name=".Activity.Notification.NotificaionActivity"></activity>
     </application>
 
 </manifest>

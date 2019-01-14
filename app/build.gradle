@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
     implementation 'com.github.npanigrahy:Custom-Calendar-View:v1.1'
+    implementation 'com.bigbangbutton:editcodeview:1.0.6'
 }

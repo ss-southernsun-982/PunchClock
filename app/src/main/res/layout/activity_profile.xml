@@ -106,6 +106,7 @@
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="center"
                     android:text="Leaves"
+                    android:layout_marginRight="@dimen/margin_8dp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/textMedium" />
             </LinearLayout>
@@ -134,6 +135,7 @@
                 android:weightSum="3">
 
                 <TextView
+                    android:id="@+id/txt_notification_profile"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginRight="@dimen/margin_8dp"
@@ -213,6 +215,19 @@
                     android:fontFamily="@font/roboto_bold"
                     android:gravity="center"
                     android:text="Hotine"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textMedium" />
+
+                <TextView
+                    android:id="@+id/txt_help_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/margin_8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_background_white"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text="Help"
                     android:textColor="@color/black"
                     android:textSize="@dimen/textMedium" />
             </LinearLayout>

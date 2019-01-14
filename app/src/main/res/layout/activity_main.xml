@@ -6,539 +6,347 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/layout_background_main"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true">
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/custom_background_gradient"></RelativeLayout>
-    </RelativeLayout>
-
-    <include
-        android:id="@+id/toolBar_main"
-        layout="@layout/toolbar_main"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <LinearLayout
-        android:id="@+id/layout_menu_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolBar_main"
-        android:orientation="vertical"
-        android:padding="@dimen/padding_16dp"
-        android:weightSum="5">
-
-        <RelativeLayout
-            android:id="@+id/layout_check_in_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:paddingLeft="@dimen/padding_16dp"
-            android:paddingTop="@dimen/padding_16dp"
-            android:paddingBottom="@dimen/padding_16dp">
+            android:layout_height="match_parent">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/date_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="01/01/2019"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/textMedium" />
-
-                <TextView
-                    android:id="@+id/time_clock_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/date_main"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="00:00:00"
-                    android:textColor="@color/black"
-                    android:textSize="40sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:visibility="gone"
-                android:id="@+id/relative_check_out_main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/border_dashboard_main">
-
-                <TextView
-                    android:id="@+id/txt_check_out_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/roboto_bold"
-                    android:padding="@dimen/padding_16dp"
-                    android:text="Check out"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:visibility="gone"
-                android:id="@+id/relative_check_in_main"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/border_dashboard_main">
-
-                <TextView
-                    android:id="@+id/txt_check_in_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/roboto_bold"
-                    android:padding="@dimen/padding_16dp"
-                    android:text="Check in"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            android:layout_weight="2"
-            android:background="@color/white"
-            android:paddingLeft="@dimen/padding_16dp"
-            android:paddingTop="@dimen/padding_16dp"
-            android:paddingBottom="@dimen/padding_16dp">
-
-            <LinearLayout
+                android:id="@+id/layout_background_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingRight="@dimen/margin_8dp">
-
-                <TextView
-                    android:id="@+id/notification_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Notification Dashboard"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/textLarger" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/notification_main"
-                    android:layout_marginTop="@dimen/margin_8dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/title_notification_main"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="Happy new year Holiday 2019"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/textMedium" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/author_notification_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="Admin "
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/textMedium" />
-
-                        <TextView
-                            android:id="@+id/time_notification_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/author_notification_main"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="22h30 1/01/2019"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/textMedium" />
-                    </RelativeLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/notification_main"
-                    android:layout_marginTop="@dimen/margin_8dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/title2_notification_main"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="Happy new year Holiday 2019"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/textMedium" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/author2_notification_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="Admin "
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/textMedium" />
-
-                        <TextView
-                            android:id="@+id/time2_notification_main"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/author2_notification_main"
-                            android:fontFamily="@font/roboto_regular"
-                            android:text="22h30 1/01/2019"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/textMedium" />
-                    </RelativeLayout>
-                </LinearLayout>
-            </LinearLayout>
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:paddingLeft="@dimen/padding_16dp"
-            android:paddingTop="@dimen/padding_16dp"
-            android:paddingBottom="@dimen/padding_16dp">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/layout_send_ticket"
-                android:paddingRight="@dimen/margin_8dp">
-
-                <TextView
-                    android:id="@+id/ticket_main"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:text="Ticket"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/textLarger" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/ticket_main"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="1 request at"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/textMedium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="22h30 1/01/2019"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/textMedium" />
-                </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_send_ticket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/border_dashboard_main">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/roboto_bold"
-                    android:padding="@dimen/padding_16dp"
-                    android:text="Send"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white" />
-            </RelativeLayout>
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_16dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_marginRight="@dimen/margin_8dp"
-                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:fontFamily="@font/roboto_bold"
-                android:padding="@dimen/margin_16dp"
-                android:text="Calendar"
-                android:textColor="@color/black"
-                android:textSize="@dimen/textLarger" />
+                android:layout_centerInParent="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_background_gradient"></RelativeLayout>
+            </RelativeLayout>
+
+            <include
+                android:id="@+id/toolBar_main"
+                layout="@layout/toolbar_main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
             <LinearLayout
-                android:layout_marginLeft="@dimen/margin_8dp"
-                android:layout_width="0dp"
+                android:id="@+id/layout_menu_main"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:orientation="vertical">
+                android:layout_below="@id/toolBar_main"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_16dp"
+                android:weightSum="5">
 
-                <TextView
-                    android:id="@+id/txt_hotline_main"
+                <RelativeLayout
+                    android:id="@+id/layout_check_in_main"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_bold"
-                    android:padding="@dimen/padding_16dp"
-                    android:text="Hotline"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/textLarger" />
-
-                <TextView
-                    android:id="@+id/txt_number_hotline_main"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_medium"
+                    android:layout_weight="1"
+                    android:background="@color/white"
                     android:paddingLeft="@dimen/padding_16dp"
-                    android:text="+84 123 456 798"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/textMedium" />
+                    android:paddingTop="@dimen/padding_16dp"
+                    android:paddingBottom="@dimen/padding_16dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/date_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="01/01/2019"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textMedium" />
+
+                        <TextView
+                            android:id="@+id/time_clock_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/date_main"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="00:00:00"
+                            android:textColor="@color/black"
+                            android:textSize="40sp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relative_check_out_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/border_dashboard_main"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/txt_check_out_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="@dimen/padding_16dp"
+                            android:text="Check out"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/relative_check_in_main"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/border_dashboard_main"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/txt_check_in_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="@dimen/padding_16dp"
+                            android:text="Check in"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:layout_weight="2"
+                    android:background="@color/white"
+                    android:paddingLeft="@dimen/padding_16dp"
+                    android:paddingTop="@dimen/padding_16dp"
+                    android:paddingBottom="@dimen/padding_16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingRight="@dimen/margin_8dp">
+
+                        <TextView
+                            android:id="@+id/notification_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Notification Dashboard"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textLarger" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/notification_main"
+                            android:layout_marginTop="@dimen/margin_8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/title_notification_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="Happy new year Holiday 2019"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/textMedium" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/author_notification_main"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="Admin "
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/textMedium" />
+
+                                <TextView
+                                    android:id="@+id/time_notification_main"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/author_notification_main"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="22h30 1/01/2019"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/textMedium" />
+                            </RelativeLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/notification_main"
+                            android:layout_marginTop="@dimen/margin_8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/title2_notification_main"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="Happy new year Holiday 2019"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/textMedium" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/author2_notification_main"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="Admin "
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/textMedium" />
+
+                                <TextView
+                                    android:id="@+id/time2_notification_main"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_toRightOf="@id/author2_notification_main"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:text="22h30 1/01/2019"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/textMedium" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:paddingLeft="@dimen/padding_16dp"
+                    android:paddingTop="@dimen/padding_16dp"
+                    android:paddingBottom="@dimen/padding_16dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/layout_send_ticket"
+                        android:paddingRight="@dimen/margin_8dp">
+
+                        <TextView
+                            android:id="@+id/ticket_main"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Ticket"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textLarger" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/ticket_main"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="1 request at"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/textMedium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="22h30 1/01/2019"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/textMedium" />
+                        </LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layout_send_ticket"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/border_dashboard_main">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="@dimen/padding_16dp"
+                            android:text="Send"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white" />
+                    </RelativeLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_16dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/margin_8dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:fontFamily="@font/roboto_bold"
+                        android:padding="@dimen/margin_16dp"
+                        android:text="Calendar"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textLarger" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/margin_8dp"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_hotline_main"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:padding="@dimen/padding_16dp"
+                            android:text="Hotline"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textLarger" />
+
+                        <TextView
+                            android:id="@+id/txt_number_hotline_main"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:paddingLeft="@dimen/padding_16dp"
+                            android:text="+84 123 456 798"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/textMedium" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
 
-        <!--<RelativeLayout-->
-        <!--android:id="@+id/layout_calender_main"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:orientation="vertical"-->
-        <!--android:weightSum="2">-->
-
-        <!--<RelativeLayout-->
-        <!--android:id="@+id/layout_time"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_weight="1"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:paddingTop="@dimen/padding_16dp"-->
-        <!--android:weightSum="5">-->
-
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="center">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/txt_hour_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_weight="1"-->
-        <!--android:fontFamily="@font/digital"-->
-        <!--android:gravity="center"-->
-        <!--android:includeFontPadding="false"-->
-        <!--android:text="00"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="110dp" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/dot_1_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_toRightOf="@+id/txt_hour_main"-->
-        <!--android:fontFamily="@font/digital"-->
-        <!--android:gravity="center"-->
-        <!--android:includeFontPadding="false"-->
-        <!--android:text=":"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="100dp" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/txt_minute_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_toRightOf="@+id/dot_1_main"-->
-        <!--android:layout_weight="1"-->
-        <!--android:fontFamily="@font/digital"-->
-        <!--android:gravity="center"-->
-        <!--android:includeFontPadding="false"-->
-        <!--android:text="00"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="110dp" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/dot_2_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_toRightOf="@+id/txt_minute_main"-->
-        <!--android:fontFamily="@font/digital"-->
-        <!--android:gravity="center"-->
-        <!--android:includeFontPadding="false"-->
-        <!--android:text=":"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="100dp" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/txt_second_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:layout_toRightOf="@+id/dot_2_main"-->
-        <!--android:fontFamily="@font/digital"-->
-        <!--android:gravity="center"-->
-        <!--android:includeFontPadding="false"-->
-        <!--android:text="00"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="110dp" />-->
-        <!--</RelativeLayout>-->
-        <!--</RelativeLayout>-->
-
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/layout_time"-->
-        <!--android:layout_weight="1"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/txt_date_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:fontFamily="@font/digital"-->
-        <!--android:padding="@dimen/margin_8dp"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="@dimen/dimen_40dp" />-->
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:fontFamily="@font/roboto_medium"-->
-        <!--android:padding="@dimen/padding_16dp"-->
-        <!--android:text="Đến sớm 5 phút được coi là đúng giờ"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="@dimen/textMedium" />-->
-
-        <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical"-->
-        <!--android:weightSum="2">-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/current_location_main"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:drawableLeft="@drawable/ic_location_on_white_24dp"-->
-        <!--android:drawablePadding="@dimen/margin_8dp"-->
-        <!--android:ellipsize="end"-->
-        <!--android:fontFamily="@font/roboto_medium"-->
-        <!--android:gravity="left"-->
-        <!--android:lines="1"-->
-        <!--android:padding="@dimen/padding_16dp"-->
-        <!--android:text="222 Lê Văn Sĩ"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="@dimen/textMedium" />-->
-
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_marginLeft="@dimen/margin_16dp"-->
-        <!--android:layout_weight="1">-->
-
-        <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerInParent="true">-->
-
-        <!--<ImageView-->
-        <!--android:id="@+id/img_weather_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:src="@drawable/ic_snow" />-->
-
-        <!--<TextView-->
-        <!--android:id="@+id/txt_current_weather_main"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_toRightOf="@+id/img_weather_main"-->
-        <!--android:layout_weight="1"-->
-        <!--android:fontFamily="@font/roboto_medium"-->
-        <!--android:gravity="center"-->
-        <!--android:padding="@dimen/padding_16dp"-->
-        <!--android:text="Snow"-->
-        <!--android:textColor="@color/colorWhite"-->
-        <!--android:textSize="@dimen/textMedium" />-->
-        <!--</RelativeLayout>-->
-        <!--</RelativeLayout>-->
-
-        <!--</LinearLayout>-->
-        <!--</LinearLayout>-->
-        <!--</RelativeLayout>-->
-
-        <!--<RelativeLayout-->
-        <!--android:id="@+id/layout_menu_bottom_main"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1">-->
-
-        <!--<GridView-->
-        <!--android:id="@+id/grid_menu_main"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:background="@color/colorWhite"-->
-        <!--android:gravity="center"-->
-        <!--android:horizontalSpacing="1dp"-->
-        <!--android:numColumns="2"-->
-        <!--android:stretchMode="columnWidth"-->
-        <!--android:verticalSpacing="1dp"></GridView>-->
-        <!--</RelativeLayout>-->
-        <!--</LinearLayout>-->
-    </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

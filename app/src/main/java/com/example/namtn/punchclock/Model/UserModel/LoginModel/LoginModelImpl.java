@@ -101,6 +101,7 @@ public class LoginModelImpl implements LoginModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
                     editor.putString("userId", String.valueOf(s.getData().getId()));
+                    editor.putString("userRole", String.valueOf(s.getData().getId()));
                     editor.commit();
                     listener.getInfoSuccess("Đăng nhập thành công");
                     Log.d(TAG, "getUserInfo: " + s.getData().getId());

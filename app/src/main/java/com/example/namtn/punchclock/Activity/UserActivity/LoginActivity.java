@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.namtn.punchclock.Activity.BaseActivity;
-import com.example.namtn.punchclock.Activity.MainActivity;
+import com.example.namtn.punchclock.Activity.EnterPassCodeActivity;
 import com.example.namtn.punchclock.Model.UserModel.LoginModel.LoginModelImpl;
 import com.example.namtn.punchclock.Presenter.UserPresenter.LoginPresenter.LoginPresenter;
 import com.example.namtn.punchclock.Presenter.UserPresenter.LoginPresenter.LoginPresenterImpl;
@@ -103,8 +103,7 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
 
     @Override
     public void getInfoSuccess(String s) {
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
-        mPresenterLogin.IntentClass(MainActivity.class);
+        mPresenterLogin.IntentClass(EnterPassCodeActivity.class);
     }
 
     private void loginUser(){

@@ -87,7 +87,7 @@ public class AssignLeaveActivity extends BaseActivity implements AssignLeaveView
         mGridViewCalendar = mDialogDay.findViewById(R.id.gird_select_day_assign);
         mButtonNextMonth = mDialogDay.findViewById(R.id.btn_right_dialog_select);
         mButtonPrevMonth = mDialogDay.findViewById(R.id.btn_left_dialog_select);
-        mButtonSaveDialog= mDialogDay.findViewById(R.id.btn_save_dialog);
+        mButtonSaveDialog = mDialogDay.findViewById(R.id.btn_save_dialog);
     }
 
     @Override
@@ -159,8 +159,7 @@ public class AssignLeaveActivity extends BaseActivity implements AssignLeaveView
 
     @Override
     public void setDateLive(String date) {
-        mRadioHalfDay.setText(date
-        );
+        mRadioHalfDay.append(" " + date);
     }
 
     @Override

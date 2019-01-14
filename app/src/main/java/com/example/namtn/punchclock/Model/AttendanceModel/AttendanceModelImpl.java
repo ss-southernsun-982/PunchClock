@@ -121,11 +121,6 @@ public class AttendanceModelImpl implements AttendanceModel {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         s -> {
-                            editor.putBoolean("isCheckIn", false);
-                            editor.putBoolean("isCheckOut", false);
-                            editor.putLong("timeStart", 0);
-                            editor.putLong("timeEnd", 0);
-                            editor.commit();
                             AttendanceData data;
                             Date checkIn = null;
                             Date checkOut = null;
@@ -137,6 +132,11 @@ public class AttendanceModelImpl implements AttendanceModel {
                                 data = new AttendanceData();
                                 data.setDate(df.format(c));
                                 listAttendanceData.add(data);
+                                editor.putBoolean("isCheckIn", false);
+                                editor.putBoolean("isCheckOut", false);
+                                editor.putLong("timeStart", 0);
+                                editor.putLong("timeEnd", 0);
+                                editor.commit();
                             } else {
                                 checkIn = dateFormat.parse(data.getCheckIn());
                                 checkOut = dateFormat.parse(data.getCheckOut());

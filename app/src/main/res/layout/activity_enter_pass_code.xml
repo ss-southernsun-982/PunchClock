@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/padding_32dp"
+        android:text="Please enter your pass code"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textLarge" />
+
+    <com.bigbangbutton.editcodeview.EditCodeView
+        android:id="@+id/edit_code_enter_passcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_32dp"
+        android:layout_marginTop="@dimen/padding_32dp"
+        android:layout_marginRight="@dimen/padding_32dp"
+        app:textColor="@color/black"
+        app:textSize="@dimen/dimen_50dp"
+        app:underlineBaseColor="@color/black"
+        app:underlineCursorColor="@color/black"
+        app:underlineFilledColor="@color/black"
+        app:underlineSelectedColor="@color/black"
+        app:underlineStroke="5dp" />
+</LinearLayout>

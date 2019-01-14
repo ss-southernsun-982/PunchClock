@@ -70,6 +70,7 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
     private LocationManager lm;
     private boolean gps_enabled = false;
     private boolean network_enabled = false;
+    private String role = "guest";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -82,8 +83,9 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
         initData();
         locationPermission();
         checkEnableGPS();
-        preferences = getApplicationContext().getSharedPreferences("data_map", MODE_PRIVATE);
-        preferencesUser = getApplicationContext().getSharedPreferences("user_data", MODE_PRIVATE);
+        setLayoutWithRole();
+        preferences = this.getSharedPreferences("data_map", MODE_PRIVATE);
+        preferencesUser = this.getSharedPreferences("user_data", Context.MODE_PRIVATE);
         editor = preferences.edit();
         editorUser = preferencesUser.edit();
 
@@ -178,6 +180,30 @@ public abstract class BaseActivity extends AppCompatActivity implements GoogleAp
     protected abstract void initEventControl();
 
     protected abstract void initData();
+
+    public void setLayoutWithRole(){
+        preferencesUser = getSharedPreferences("user_data", Context.MODE_PRIVATE);
+        if (preferencesUser != null){
+            if (preferencesUser.getString("userRole", "guest") != null){
+                role = preferencesUser.getString("userRole", "guest");
+                if (role.equalsIgnoreCase("ADMIN")){
+                    this.setAdminLayout();
+                } else {
+                    this.setGuestLayout();
+                }
+            } else {
+                this.setGuestLayout();
+            }
+        }
+    }
+
+    public void setAdminLayout(){
+
+    }
+
+    public void setGuestLayout(){
+
+    }
 
     @Override
     protected void onStart() {

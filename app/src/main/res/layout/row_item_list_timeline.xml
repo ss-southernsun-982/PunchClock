@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/margin_16dp"
+        android:paddingRight="@dimen/margin_16dp">
+
+        <RelativeLayout
+            android:id="@+id/layout_time_line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/line1"
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:background="@color/black" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_circle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_below="@id/line1"
+                android:src="@color/black" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="2dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/img_circle"
+                android:layout_centerHorizontal="true"
+                android:background="@color/black" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_contents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/layout_time_line"
+            android:padding="@dimen/margin_16dp">
+
+            <TextView
+                android:id="@+id/txt_title_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Our trip in Las Vegas"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLarge" />
+
+            <TextView
+                android:id="@+id/txt_sub_title_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_title_notification"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Our trip in Las Vegas"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textMedium" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_favorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_contents"
+            android:layout_toRightOf="@id/layout_time_line"
+            android:paddingLeft="@dimen/padding_16dp"
+            android:paddingRight="@dimen/padding_16dp">
+
+            <ImageView
+                android:id="@+id/img_favorite_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_favorite_border_grey_400_24dp" />
+
+            <TextView
+                android:id="@+id/favorite_count_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/img_favorite_notification"
+                android:text="16"
+                android:textSize="@dimen/textSmall" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:drawableLeft="@drawable/ic_access_time_grey_400_24dp"
+                android:drawablePadding="@dimen/margin_8dp"
+                android:text="Just now"
+                android:textSize="@dimen/textSmall" />
+        </RelativeLayout>
+
+        <View
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/layout_favorite"
+            android:layout_toRightOf="@id/layout_time_line"
+            android:background="@color/colorGray" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,10 +1,8 @@
 package com.example.namtn.punchclock.Presenter.LeavesPresenter;
 
+import com.example.namtn.punchclock.CustomWidget.CustomCalendar.AdapterCalendarLeaves;
 import com.example.namtn.punchclock.Model.LeavesModel.LeavesModel;
-import com.example.namtn.punchclock.Retrofit.RetrofitResponse.LeavesResult.LeavesData;
 import com.example.namtn.punchclock.View.LeavesView;
-
-import java.util.ArrayList;
 
 public class LeavesPresenterImpl implements LeavesPresenter, LeavesModel.onLeavesListener {
 
@@ -18,36 +16,32 @@ public class LeavesPresenterImpl implements LeavesPresenter, LeavesModel.onLeave
 
     @Override
     public void showProgressBar() {
-        if (leavesView != null){
-            leavesView.showProgressBar();
-        }
+
     }
 
     @Override
     public void hideProgressBar() {
+
+    }
+
+    @Override
+    public void initCalendarSuccess(AdapterCalendarLeaves mAdapterCalendarLeaves) {
         if (leavesView != null){
-            leavesView.hideProgressBar();
+            leavesView.fetchDataLeavesSuccess(mAdapterCalendarLeaves);
         }
     }
 
     @Override
-    public void fetchDataLeavesSuccess(ArrayList<LeavesData> leavesData) {
+    public void setTitleMonth(String prevMonth, String currentMonth, String nextMonth) {
         if (leavesView != null){
-            leavesView.fetchDataLeavesSuccess(leavesData);
+            leavesView.setTitleCalendar(prevMonth, currentMonth, nextMonth);
         }
     }
 
     @Override
-    public void fetchDataLeavesError(String error) {
-        if (leavesView != null){
-            leavesView.fetchDataLeavesError(error);
-        }
-    }
-
-    @Override
-    public void fetchDataLeaves() {
-        if (leavesModel != null){
-            leavesModel.fetchDataLeaves(this);
+    public void onInitDataCalendar(int ofMonth, int year) {
+        if (leavesModel != null) {
+            leavesModel.initCalendarLeave(this, ofMonth, year);
         }
     }
 
