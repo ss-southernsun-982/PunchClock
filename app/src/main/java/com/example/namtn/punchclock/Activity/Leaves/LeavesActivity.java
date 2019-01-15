@@ -1,14 +1,19 @@
 package com.example.namtn.punchclock.Activity.Leaves;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +27,11 @@ import com.example.namtn.punchclock.R;
 import com.example.namtn.punchclock.View.LeavesView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class LeavesActivity extends BaseActivity implements LeavesView, View.OnClickListener {
+public class LeavesActivity extends BaseActivity implements LeavesView, View.OnClickListener{
 
     private String TAG = "LEAVES_ACTIVITY";
     private TextView mTextViewToolBarLeaves, mTextViewPrevMonth, mTextViewCurrentMonth,
@@ -37,6 +43,9 @@ public class LeavesActivity extends BaseActivity implements LeavesView, View.OnC
     private LinearLayout mLinearLeavesAdmin;
     private GridView mGridViewLeaves;
     private int month = 0, year = 0;
+    private Dialog mDialog;
+    private Spinner mSpinnerSelectMonth, mSpinnerSelectYear;
+    private Button mButtonOke, mButtonCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +79,13 @@ public class LeavesActivity extends BaseActivity implements LeavesView, View.OnC
         mTextViewPrevMonth = findViewById(R.id.prev_month_leaves);
         mTextViewNextMonth = findViewById(R.id.next_month_leaves);
         mTextViewCurrentMonth = findViewById(R.id.current_month_leaves);
+        mDialog = new Dialog(this);
+        mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        mDialog.setContentView(R.layout.select_month_leaves);
+        mSpinnerSelectMonth = mDialog.findViewById(R.id.spinner_select_month_leaves);
+        mSpinnerSelectYear = mDialog.findViewById(R.id.spinner_select_year_leaves);
+        mButtonOke = mDialog.findViewById(R.id.btn_search_select_leaves);
+        mButtonCancel = mDialog.findViewById(R.id.btn_search_cancel_leaves);
     }
 
     @Override
@@ -79,6 +95,34 @@ public class LeavesActivity extends BaseActivity implements LeavesView, View.OnC
         mTextViewPrevMonth.setOnClickListener(this);
         mTextViewNextMonth.setOnClickListener(this);
         mTextViewCurrentMonth.setOnClickListener(this);
+        mButtonOke.setOnClickListener(this);
+        mButtonCancel.setOnClickListener(this);
+        mSpinnerSelectMonth.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                month = Integer.parseInt(parent.getItemAtPosition(position).toString());
+                String[] strings = parent.getItemAtPosition(position).toString().split(" ");
+                month = Integer.parseInt(strings[1]);
+                Toast.makeText(LeavesActivity.this, "" + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        mSpinnerSelectYear.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                year = Integer.parseInt(parent.getItemAtPosition(position).toString());
+                Toast.makeText(LeavesActivity.this, "" + parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         mGridViewLeaves.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -153,6 +197,18 @@ public class LeavesActivity extends BaseActivity implements LeavesView, View.OnC
     }
 
     @Override
+    public void showDialogSelect(ArrayAdapter<String> adapterMonth, ArrayAdapter<String> adapterYear) {
+        mSpinnerSelectMonth.setAdapter(adapterMonth);
+        mSpinnerSelectYear.setAdapter(adapterYear);
+        mDialog.show();
+    }
+
+    @Override
+    public void hideDialogSelect() {
+        mDialog.hide();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         this.finish();
@@ -172,10 +228,18 @@ public class LeavesActivity extends BaseActivity implements LeavesView, View.OnC
                 mLeavesPresenter.onInitDataCalendar(month, year);
                 break;
             case R.id.current_month_leaves:
+                mLeavesPresenter.showDialogSelectLeave();
                 break;
             case R.id.prev_month_leaves:
                 month = month -1;
                 mLeavesPresenter.onInitDataCalendar(month, year);
+                break;
+            case R.id.btn_search_select_leaves:
+                mLeavesPresenter.onInitDataCalendar(month, year);
+                mLeavesPresenter.hideDialogSelectLeave();
+                break;
+            case R.id.btn_search_cancel_leaves:
+                mLeavesPresenter.hideDialogSelectLeave();
                 break;
         }
     }

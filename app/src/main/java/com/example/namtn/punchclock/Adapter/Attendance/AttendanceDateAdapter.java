@@ -77,6 +77,8 @@ public class AttendanceDateAdapter extends BaseAdapter {
             strCheckOut = strCheckOut.substring(strCheckOut.indexOf(" "), strCheckOut.length());
             if (!strCheckOut.equalsIgnoreCase("Out: 00:00:00")){
                 viewHolder.mImageSatus.setImageDrawable(context.getResources().getDrawable(R.color.colorGreen));
+            } else {
+                viewHolder.mImageSatus.setImageDrawable(context.getResources().getDrawable(R.color.colorRed));
             }
             Log.d(TAG, "getView: " + strCheckOut);
         } else {

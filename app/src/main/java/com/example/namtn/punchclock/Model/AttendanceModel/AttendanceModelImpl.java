@@ -211,6 +211,7 @@ public class AttendanceModelImpl implements AttendanceModel {
                             adapter = new AttendanceDateAdapter(context, listAttendanceData);
                             adapter.notifyDataSetChanged();
                             listener.fetchDataAttendanceSuccess(adapter);
+                            this.calculatorTimeWorking(listener);
                             listener.hideProgressBar();
                         },
                         throwable -> {

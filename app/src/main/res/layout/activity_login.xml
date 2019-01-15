@@ -30,7 +30,7 @@
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/diary_text" />
+                    android:src="@drawable/logo_nks" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import com.example.namtn.punchclock.CustomWidget.CustomCalendar.AdapterCalendarLeaves;
 import com.example.namtn.punchclock.CustomWidget.CustomCalendar.CalendarSateLeaves;
@@ -39,6 +40,10 @@ public class LeavesModelImpl implements LeavesModel {
     private Calendar calendar;
     private int p = 0, month = 0;
     private int positionMonth = 0;
+    private ArrayAdapter<String> adapterMonth;
+    private ArrayList<String> arrayListMonth;
+    private ArrayAdapter<String> adapterYear;
+    private ArrayList<String> arrayListYear;
 
     public LeavesModelImpl(Context context) {
         this.context = context;
@@ -51,6 +56,10 @@ public class LeavesModelImpl implements LeavesModel {
         formatTitle = new SimpleDateFormat("MMM-yyyy");
         listData = new ArrayList<>();
         mListCalendarState = new ArrayList<>();
+        arrayListMonth = new ArrayList<>();
+        arrayListYear = new ArrayList<>();
+        adapterMonth = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, arrayListMonth);
+        adapterYear = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, arrayListYear);
     }
 
     @Override
@@ -72,7 +81,24 @@ public class LeavesModelImpl implements LeavesModel {
 
     }
 
-    public void addData(int ofMonth, int year, onLeavesListener listener, ArrayList<LeavesData> mLeavesData){
+    @Override
+    public void configDialog(onLeavesListener listener) {
+        calendar = Calendar.getInstance();
+        for (int i = 1; i < 13; i++) {
+            arrayListMonth.add("Tháng " + String.valueOf(i));
+        }
+        for (int i = 2016; i <= calendar.get(Calendar.YEAR); i++) {
+            arrayListYear.add(String.valueOf(i));
+        }
+        adapterMonth.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapterMonth.notifyDataSetChanged();
+        adapterYear.notifyDataSetChanged();
+        listener.onShowDialog(adapterMonth, adapterYear);
+    }
+
+    public void addData(int ofMonth, int year, onLeavesListener listener, ArrayList<LeavesData> mLeavesData) {
+        mListCalendarState.clear();
         mListCalendarState.addAll(addDate(ofMonth, year, listener));
         mAdapterCalendarLeaves = new AdapterCalendarLeaves(context, mListCalendarState, mLeavesData);
         mAdapterCalendarLeaves.notifyDataSetChanged();

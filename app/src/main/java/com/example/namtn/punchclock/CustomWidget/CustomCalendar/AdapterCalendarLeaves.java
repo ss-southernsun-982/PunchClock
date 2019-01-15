@@ -2,6 +2,7 @@ package com.example.namtn.punchclock.CustomWidget.CustomCalendar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,10 @@ import android.widget.TextView;
 import com.example.namtn.punchclock.R;
 import com.example.namtn.punchclock.Retrofit.RetrofitResponse.LeavesResult.LeavesData;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -25,8 +28,9 @@ public class AdapterCalendarLeaves extends BaseAdapter {
     List<CalendarSateLeaves> mListCalendar;
     List<LeavesData> mListLeaves;
     LayoutInflater inflater;
-    SimpleDateFormat dateFormat;
+    SimpleDateFormat dateFormat, calendarFormat;
     Calendar mCalendar;
+    Date date;
 
     public AdapterCalendarLeaves(Context mContext, List<CalendarSateLeaves> mListCalendar,
                                  List<LeavesData> mListLeaves) {
@@ -35,6 +39,7 @@ public class AdapterCalendarLeaves extends BaseAdapter {
         this.mListLeaves = mListLeaves;
         inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         dateFormat = new SimpleDateFormat("d/M");
+        calendarFormat = new SimpleDateFormat("d/M/yyyy");
     }
 
     @Override
@@ -75,20 +80,6 @@ public class AdapterCalendarLeaves extends BaseAdapter {
         if (mListCalendar.get(position).isDateOfMonth()) {
             viewHolder.mBackGround.setBackgroundColor(mContext.getResources().getColor(R.color
                     .colorWhite));
-            viewHolder.mCircleImageView = new CircleImageView(mContext);
-            viewHolder.mCircleImageView2 = new CircleImageView(mContext);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup
-                    .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.gravity = Gravity.CENTER_HORIZONTAL;
-            viewHolder.mLinearLayoutAddLeaves.setLayoutParams(params);
-            LinearLayout.LayoutParams paramsImage1 = new LinearLayout.LayoutParams(12, 12);
-            paramsImage1.setMargins(0, 0, 3, 0);
-            viewHolder.mCircleImageView.setLayoutParams(paramsImage1);
-            viewHolder.mCircleImageView2.setLayoutParams(new LinearLayout.LayoutParams(12, 12));
-            viewHolder.mCircleImageView.setImageResource(R.color.colorRed);
-            viewHolder.mCircleImageView2.setImageResource(R.color.colorGreen);
-            viewHolder.mLinearLayoutAddLeaves.addView(viewHolder.mCircleImageView);
-            viewHolder.mLinearLayoutAddLeaves.addView(viewHolder.mCircleImageView2);
         } else {
             viewHolder.mTextViewCalendar.setTextColor(mContext.getResources().getColor(R.color
                     .coloGray));
@@ -102,6 +93,33 @@ public class AdapterCalendarLeaves extends BaseAdapter {
             viewHolder.mBackGround.setBackgroundColor(mContext.getResources().getColor(R.color.colorPrimary));
             viewHolder.mTextViewCalendar.setTextColor(mContext.getResources().getColor(R.color
                     .colorWhite));
+        }
+        for (int i = 0; i < (mListLeaves.size() - 1); i++) {
+            Log.d("BBBBBB", "getView date leaves: " + mListLeaves.get(i).getDate());
+            Log.d("BBBBBB", "getView date : " + calendarDay);
+            String dateLeaves = mListLeaves.get(i).getDate();
+            try {
+                date = calendarFormat.parse(dateLeaves);
+                if (calendarFormat.format(date.getTime()).equals(calendarDay)) {
+                    Log.d("BBBBBB", "getView date : equal");
+                    viewHolder.mCircleImageView = new CircleImageView(mContext);
+                    viewHolder.mCircleImageView2 = new CircleImageView(mContext);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup
+                            .LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    params.gravity = Gravity.CENTER_HORIZONTAL;
+                    viewHolder.mLinearLayoutAddLeaves.setLayoutParams(params);
+                    LinearLayout.LayoutParams paramsImage1 = new LinearLayout.LayoutParams(12, 12);
+                    paramsImage1.setMargins(0, 0, 3, 0);
+                    viewHolder.mCircleImageView.setLayoutParams(paramsImage1);
+                    viewHolder.mCircleImageView2.setLayoutParams(new LinearLayout.LayoutParams(12, 12));
+                    viewHolder.mCircleImageView.setImageResource(R.color.colorRed);
+                    viewHolder.mCircleImageView2.setImageResource(R.color.colorGreen);
+                    viewHolder.mLinearLayoutAddLeaves.addView(viewHolder.mCircleImageView);
+                    viewHolder.mLinearLayoutAddLeaves.addView(viewHolder.mCircleImageView2);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
         String s = String.valueOf(sateLeaves.getDate());
         viewHolder.mTextViewCalendar.setText(s);

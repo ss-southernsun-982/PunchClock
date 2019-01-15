@@ -125,7 +125,7 @@
                     android:gravity="center"
                     android:text="12"
                     android:textColor="@color/colorGray"
-                    android:textSize="21sp" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/current_month_leaves"
@@ -136,7 +136,7 @@
                     android:gravity="center"
                     android:text="12"
                     android:textColor="#000000"
-                    android:textSize="22sp"
+                    android:textSize="21sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -148,7 +148,7 @@
                     android:gravity="center"
                     android:text="12"
                     android:textColor="@color/colorGray"
-                    android:textSize="21sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <LinearLayout
