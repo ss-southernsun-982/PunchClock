@@ -9,7 +9,7 @@
         android:id="@+id/txt_header_list_timeline"
         android:textSize="@dimen/textLarge"
         android:text="Previous"
-        android:textColor="@color/black"
+        android:textColor="@color/colorBlack"
         android:fontFamily="@font/roboto_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

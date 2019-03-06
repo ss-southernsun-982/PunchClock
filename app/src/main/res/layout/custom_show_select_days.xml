@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -143,6 +143,6 @@
         android:background="@drawable/circle_background_white"
         android:fontFamily="@font/roboto_bold"
         android:text="Đồng ý"
-        android:textColor="@color/white"
+        android:textColor="@color/colorWhite"
         android:textSize="@dimen/textMedium" />
 </LinearLayout>

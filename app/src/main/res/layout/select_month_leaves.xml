@@ -48,7 +48,7 @@
             android:layout_weight="1"
             android:background="@drawable/circle_background_white"
             android:text="Oke"
-            android:textColor="@color/white" />
+            android:textColor="@color/colorWhite" />
 
         <Button
             android:id="@+id/btn_search_cancel_leaves"

@@ -2,6 +2,8 @@ package com.example.namtn.punchclock.Presenter.UserPresenter.LoginPresenter;
 
 import com.example.namtn.punchclock.Model.UserModel.LoginModel.LoginModel;
 import com.example.namtn.punchclock.View.LoginView;
+import com.facebook.CallbackManager;
+import com.facebook.login.widget.LoginButton;
 
 public class LoginPresenterImpl implements LoginPresenter, LoginModel.onLoginListener {
 
@@ -70,9 +72,30 @@ public class LoginPresenterImpl implements LoginPresenter, LoginModel.onLoginLis
     }
 
     @Override
+    public void loginFacebookCallBackResult(CallbackManager manager) {
+        if (mLoginView != null){
+            mLoginView.loginFacebookCallBack(manager);
+        }
+    }
+
+    @Override
+    public void loginFacebookSuccess(String message) {
+        if (mLoginView != null){
+            mLoginView.loginFacebookSuccess(message);
+        }
+    }
+
+    @Override
     public void loginUser(String email, String password) {
         if (mLoginMode != null) {
             mLoginMode.loginUser(email, password, this);
+        }
+    }
+
+    @Override
+    public void loginFacebook(LoginButton mLoginButton) {
+        if (mLoginMode != null){
+            mLoginMode.loginWithFaceBook(this, mLoginButton);
         }
     }
 

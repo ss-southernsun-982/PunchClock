@@ -1,5 +1,8 @@
 package com.example.namtn.punchclock.View;
 
+import com.facebook.CallbackManager;
+import com.facebook.login.widget.LoginButton;
+
 public interface LoginView {
     void showProgressDialog();
 
@@ -16,4 +19,8 @@ public interface LoginView {
     void getInfoFailure(String s);
 
     void getInfoSuccess(String s);
+
+    void loginFacebookCallBack(CallbackManager callbackManager);
+
+    void loginFacebookSuccess(String message);
 }

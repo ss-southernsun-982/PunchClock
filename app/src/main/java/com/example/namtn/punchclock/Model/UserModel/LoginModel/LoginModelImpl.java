@@ -4,11 +4,26 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.StrictMode;
+import android.telecom.Call;
 import android.util.Log;
 
 import com.example.namtn.punchclock.Retrofit.RetrofitConfig.RetrofitAPIs;
 import com.example.namtn.punchclock.Retrofit.RetrofitConfig.RetrofitUtils;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -26,6 +41,7 @@ public class LoginModelImpl implements LoginModel {
     private SharedPreferences.Editor editor;
     String token = "";
     String email = "";
+    private CallbackManager callbackManager;
 
     public LoginModelImpl(Context context) {
         this.context = context;
@@ -88,6 +104,52 @@ public class LoginModelImpl implements LoginModel {
         Intent intent = new Intent(context, c);
         activity.startActivity(intent);
         activity.finish();
+    }
+
+    @Override
+    public void loginWithFaceBook(onLoginListener listener, LoginButton mLoginButton) {
+        callbackManager = CallbackManager.Factory.create();
+        // Callback registration
+        mLoginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // App code
+                Log.d(TAG, "onSuccess: " + loginResult.getAccessToken());
+                GraphRequest request = GraphRequest.newMeRequest(
+                        loginResult.getAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                Log.v(TAG, response.toString());
+                                // Application code
+                                try {
+                                    String email = object.getString("email");
+                                    String name = object.getString("name");
+                                    listener.loginFacebookSuccess("Welcome " + name);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                    Log.d(TAG, "onCompleted: " + e.getMessage());
+                                }
+                            }
+                        });
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id, name, email");
+                request.setParameters(parameters);
+                request.executeAsync();
+            }
+
+            @Override
+            public void onCancel() {
+                // App code
+            }
+
+            @Override
+            public void onError(FacebookException exception) {
+                // App code
+                Log.d(TAG, "onError: " + exception);
+            }
+        });
+        listener.loginFacebookCallBackResult(callbackManager);
     }
 
     @Override

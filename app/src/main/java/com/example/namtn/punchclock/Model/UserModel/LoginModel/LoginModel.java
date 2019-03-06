@@ -1,5 +1,8 @@
 package com.example.namtn.punchclock.Model.UserModel.LoginModel;
 
+import com.facebook.CallbackManager;
+import com.facebook.login.widget.LoginButton;
+
 public interface LoginModel {
 
     interface onLoginListener {
@@ -18,6 +21,10 @@ public interface LoginModel {
         void getInfoFailure(String s);
 
         void getInfoSuccess(String s);
+
+        void loginFacebookCallBackResult(CallbackManager manager);
+
+        void loginFacebookSuccess(String message);
     }
 
     void loginUser(String email, String password, onLoginListener onLoginListener);
@@ -25,4 +32,6 @@ public interface LoginModel {
     void getUserInfo(onLoginListener listener);
 
     void IntentClass(Class c);
+
+    void loginWithFaceBook(onLoginListener listener, LoginButton mLoginButton);
 }

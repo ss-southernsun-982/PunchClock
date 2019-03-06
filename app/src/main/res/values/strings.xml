@@ -4,6 +4,8 @@
     <string name="user_password">Password</string>
     <string name="title_login">Login</string>
     <string name="google_maps_key">AIzaSyBMA30UXts64nWtjWfjbLFuOy9qR2gqGGY</string>
+    <string name="facebook_app_id">293674907976116</string>
+    <string name="fb_login_protocol_scheme">fb293674907976116</string>
     <string name="material_calendar_monday">Mon</string>
     <string name="material_calendar_tuesday">Tue</string>
     <string name="material_calendar_wednesday">Wed</string>
@@ -38,7 +40,7 @@
         <item>2 ngày</item>
         <item>3 ngày</item>
         <item>4 ngày</item>
-        <item>Số lượng khác</item>
+        <item>Khác</item>
     </string-array>
 
     <string name="material_calendar_today_button">Today</string>

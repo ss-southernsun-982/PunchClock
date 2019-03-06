@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/padding_32dp"
         android:text="Please enter your pass code"
-        android:textColor="@color/black"
+        android:textColor="@color/colorBlack"
         android:textSize="@dimen/textLarge" />
 
     <com.bigbangbutton.editcodeview.EditCodeView
@@ -22,11 +22,11 @@
         android:layout_marginLeft="@dimen/padding_32dp"
         android:layout_marginTop="@dimen/padding_32dp"
         android:layout_marginRight="@dimen/padding_32dp"
-        app:textColor="@color/black"
+        app:textColor="@color/colorBlack"
         app:textSize="@dimen/dimen_50dp"
-        app:underlineBaseColor="@color/black"
-        app:underlineCursorColor="@color/black"
-        app:underlineFilledColor="@color/black"
-        app:underlineSelectedColor="@color/black"
+        app:underlineBaseColor="@color/colorBlack"
+        app:underlineCursorColor="@color/colorBlack"
+        app:underlineFilledColor="@color/colorBlack"
+        app:underlineSelectedColor="@color/colorBlack"
         app:underlineStroke="5dp" />
 </LinearLayout>

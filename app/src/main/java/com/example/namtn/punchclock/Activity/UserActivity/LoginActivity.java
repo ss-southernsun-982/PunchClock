@@ -1,20 +1,26 @@
 package com.example.namtn.punchclock.Activity.UserActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.example.namtn.punchclock.Activity.BaseActivity;
 import com.example.namtn.punchclock.Activity.EnterPassCodeActivity;
+import com.example.namtn.punchclock.Activity.MainActivity;
 import com.example.namtn.punchclock.Model.UserModel.LoginModel.LoginModelImpl;
 import com.example.namtn.punchclock.Presenter.UserPresenter.LoginPresenter.LoginPresenter;
 import com.example.namtn.punchclock.Presenter.UserPresenter.LoginPresenter.LoginPresenterImpl;
 import com.example.namtn.punchclock.R;
 import com.example.namtn.punchclock.View.LoginView;
+import com.facebook.CallbackManager;
+import com.facebook.login.widget.LoginButton;
+
+import java.util.Arrays;
 
 public class LoginActivity extends BaseActivity implements LoginView, View.OnClickListener {
 
@@ -24,6 +30,8 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     private LoginPresenter mPresenterLogin;
     private ProgressBar mProgressBarLogin;
     private String TAG = "LOGIN_MAIN";
+    private CallbackManager callback;
+    private LoginButton mLoginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +51,13 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         mButtonLogin = findViewById(R.id.btn_access_login);
         mProgressBarLogin = findViewById(R.id.progress_login);
         mProgressBarLogin.setVisibility(View.GONE);
+        mLoginButton = findViewById(R.id.login_button_facebook);
     }
 
     @Override
     protected void initEventControl() {
         mButtonLogin.setOnClickListener(this);
+        mLoginButton.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +70,10 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         switch (v.getId()) {
             case R.id.btn_access_login:
                 loginUser();
+                break;
+            case R.id.login_button_facebook:
+                mLoginButton.setReadPermissions(Arrays.asList("public_profile", "email"));
+                mPresenterLogin.loginFacebook(mLoginButton);
                 break;
         }
     }
@@ -106,6 +120,22 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
         mPresenterLogin.IntentClass(EnterPassCodeActivity.class);
     }
 
+    @Override
+    public void loginFacebookCallBack(CallbackManager callbackManager) {
+        callback = callbackManager;
+    }
+
+    @Override
+    public void loginFacebookSuccess(String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                mPresenterLogin.IntentClass(MainActivity.class);
+            }
+        });
+    }
+
     private void loginUser(){
         strUser = mUserEmail.getText().toString().trim();
         strPass= mUserPassword.getText().toString().trim();
@@ -131,5 +161,11 @@ public class LoginActivity extends BaseActivity implements LoginView, View.OnCli
     @Override
     protected void onRestart() {
         super.onRestart();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        callback.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

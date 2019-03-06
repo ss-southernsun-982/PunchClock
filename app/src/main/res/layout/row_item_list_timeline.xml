@@ -19,14 +19,14 @@
                 android:layout_width="2dp"
                 android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:background="@color/black" />
+                android:background="@color/colorBlack" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_circle"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_below="@id/line1"
-                android:src="@color/black" />
+                android:src="@color/colorBlack" />
 
             <View
                 android:id="@+id/line2"
@@ -34,7 +34,7 @@
                 android:layout_height="40dp"
                 android:layout_below="@id/img_circle"
                 android:layout_centerHorizontal="true"
-                android:background="@color/black" />
+                android:background="@color/colorBlack" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_regular"
                 android:text="Our trip in Las Vegas"
-                android:textColor="@color/black"
+                android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textLarge" />
 
             <TextView
@@ -61,7 +61,7 @@
                 android:layout_marginTop="@dimen/margin_8dp"
                 android:fontFamily="@font/roboto_regular"
                 android:text="Our trip in Las Vegas"
-                android:textColor="@color/black"
+                android:textColor="@color/colorBlack"
                 android:textSize="@dimen/textMedium" />
         </RelativeLayout>
 
